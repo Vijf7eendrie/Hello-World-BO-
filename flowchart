@@ -1,0 +1,75 @@
+START
+  |
+  V
+ INTRO
+  |
+  V
+ ROOM1?
+  |
+ / \
+V   V
+1   2
+|   |
+V   V
+STAIRCASE      BASEMENT
+  |               |
+  V               V
+ MIRROR           DOOR
+  |               |
+  V               V
+INVESTIGATE?     SYMBOLS?
+  |               |
+ / \              |
+V   V             |
+1   2             |
+|   |             |
+V   V             |
+ BOOK            INVESTIGATE
+  |               |
+  V               V
+ CURSE           EXIT?
+  |               |
+ / \              |
+V   V             |
+1   2             |
+|   |             |
+V   V             |
+BAD_END          GOOD_END
+
+
+
+
+
+START: Het spel begint hier.
+
+INTRO: De speler wordt geïntroduceerd in het verhaal en het herenhuis.
+
+ROOM1: De speler bevindt zich in de donkere hal van het herenhuis en moet kiezen tussen "STAIRCASE" en "BASEMENT."
+
+STAIRCASE: De speler gaat de trap op en komt in een slaapkamer met een spiegel. Ze moeten kiezen tussen "MIRROR" en "EXIT."
+
+MIRROR: De speler kijkt in de spiegel en moet vervolgens kiezen tussen "STAIRCASE" en "INVESTIGATE."
+
+INVESTIGATE: De speler vindt een boek en kan kiezen tussen "BOOK" en "EXIT."
+
+BOOK: De speler opent het boek en kan kiezen tussen "CURSE" en "EXIT."
+
+CURSE: De speler probeert de vloek op te heffen en wordt geconfronteerd met het "BAD_END."
+
+EXIT: De speler verlaat de kamer en keert terug naar "ROOM1."
+
+BASEMENT: De speler daalt af naar de kelder en kan kiezen tussen "DOOR" en "STAIRCASE."
+
+DOOR: De speler opent de mysterieuze deur en komt in een kamer met symbolen. Ze kunnen kiezen tussen "SYMBOLS" en "EXIT."
+
+SYMBOLS: De speler onderzoekt de symbolen en kan kiezen tussen "INVESTIGATE" en "EXIT."
+
+INVESTIGATE: De speler keert terug naar "BOOK."
+
+EXIT: De speler verlaat de kamer en keert terug naar "ROOM1."
+
+BAD_END: De speler wordt geconfronteerd met een slecht einde. Het spel eindigt hier.
+
+GOOD_END: De speler heeft een goed einde bereikt door het herenhuis te verlaten. Het spel eindigt hier.
+
+END: Het spel kan op twee manieren eindigen, afhankelijk van de keuzes van de speler.
