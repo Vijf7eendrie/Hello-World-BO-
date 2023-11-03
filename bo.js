@@ -1,78 +1,156 @@
-
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-let storyProgress = 0;
+function intro() {
+  console.log("Je bevindt je alleen in een oud en verlaten herenhuis.");
+  console.log("Er is iets vreemds aan de hand en je moet proberen te overleven.");
+  console.log("Je hebt vier mogelijke eindes voor dit verhaal. Maak je keuze goed!");
+  room1();
+}
 
-// Hier begint het verhaal
-const story = [
-  "Je wordt wakker in een donker en griezelig huis. De muren kraken en je hoort vreemde geluiden. Wat doe je?",
-  "A. Je blijft in bed en hoopt dat het voorbijgaat.",
-  "B. Je staat op om te onderzoeken waar de geluiden vandaan komen.",
-  "Je blijft in bed liggen, maar de geluiden worden steeds luider en angstaanjagender. Wat doe je?",
-  "A. Je bedekt je hoofd met een deken en probeert te slapen.",
-  "B. Je verlaat je bed om te zien wat er aan de hand is.",
-  "Terwijl je in bed ligt, voel je iets kouds over je voet glijden. Wat doe je?",
-  "A. Je trekt je voet snel terug onder de dekens.",
-  "B. Je kijkt onder de dekens om te zien wat er is.",
-  "Onder de dekens zie je een bleke, afgebroken hand. Paniek overweldigt je. Wat doe je?",
-  "A. Je schreeuwt van angst en probeert weg te komen.",
-  "B. Je probeert de hand weg te duwen en uit bed te springen.",
-  "Je springt uit bed en rent door de donkere gangen van het huis. Het huis lijkt oneindig groot en angstaanjagend. Wat doe je?",
-  "A. Je blijft rennen door de gangen, hopend op een uitweg.",
-  "B. Je stopt om te luisteren naar de geluiden en probeert de bron ervan te vinden.", 
-  "Terwijl je door de gangen rent, zie je een deur die op een kier staat. Wat doe je?",
-  "A. Je gaat door de deur, nieuwsgierig naar wat erachter ligt.",
-  "B. Je negeert de deur en blijft rennen.",
-  "Je opent de deur en bevindt je in een duistere kelder. Er is een enge, oude pop in de hoek van de kamer. Wat doe je?",    
-  "A. Je pakt de pop op en onderzoekt deze nader.",
-  "B. Je rent weg van de enge pop en de kelder uit.",
-  "Terwijl je de pop oppakt, begint deze plotseling te praten en te lachen. Wat doe je?",
-  "A. Je schreeuwt en laat de pop vallen.",
-  "B. Je probeert met de pop te praten en vragen te stellen.",
-  "De pop blijkt bezeten en begint je te achtervolgen. Wat doe je?",
-  "A. Je probeert de pop weg te gooien en te vernietigen.",
-  "B. Je probeert te ontsnappen en de pop achter je te laten.",
-];
-
-// Eindes
-const goedeEnding = "Je hebt met succes kunnen ontsnappen uit het enge huis en bent veilig. Gefeliciteerd!";
-const slechteEnding = "Helaas, je werd overweldigd door het kwaad in het huis en hebt een tragisch einde bereikt. Probeer opnieuw!";
-const semigoedeEnding = "Je hebt de enge pop vernietigd en het huis achtergelaten. Je bent ontsnapt!";
-const cliffhanger = "Je hebt de pop meegenomen en wordt nu achtervolgd door het bovennatuurlijke. Het enge verhaal gaat door...";
-
-function displayStory() {
-  console.log(story[storyProgress]);
-
-  rl.question("Maak je keuze (A of B): ", (choice) => {
-    if (choice.toUpperCase() === 'A') {
-      storyProgress += 1;
-    } else if (choice.toUpperCase() === 'B') {
-      storyProgress += 2;
+function room1() {
+  console.log("Je bent in de donkere hal van het herenhuis.");
+  console.log("Je kunt kiezen om de trap op te gaan (1) of naar de kelder te gaan (2).");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      staircase();
+    } else if (choice === "2") {
+      basement();
     } else {
-      console.log("Ongeldige keuze. Probeer 'A' of 'B'.");
-    }
-
-    if (storyProgress >= story.length - 4) {
-      // Eindes
-      if (storyProgress === story.length - 4) {
-        console.log(goedeEnding);
-      } else if (storyProgress === story.length - 3) {
-        console.log(slechteEnding);
-      } else if (storyProgress === story.length - 2) {
-        console.log(semigoedeEnding);
-      } else if (storyProgress === story.length - 1) {
-        console.log(cliffhanger);
-      }
-
-      rl.close();
-    } else {
-      displayStory();
+      death();
     }
   });
 }
 
-displayStory();
+function staircase() {
+  console.log("Je gaat de trap op en komt in een spookachtige slaapkamer.");
+  console.log("Er staat een oude spiegel. Kijk je in de spiegel (1) of verlaat je de kamer (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      mirror();
+    } else if (choice === "2") {
+      exit();
+    } else {
+      death();
+    }
+  });
+}
+
+function mirror() {
+  console.log("Je ziet je eigen reflectie in de spiegel, maar je hoort een angstaanjagend geluid achter je.");
+  console.log("Wat doe je? Ga je terug (1) of onderzoek je de kamer verder (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      staircase();
+    } else if (choice === "2") {
+      investigate();
+    } else {
+      death();
+    }
+  });
+}
+
+function investigate() {
+  console.log("Je onderzoekt de kamer en vindt een geheimzinnig boek.");
+  console.log("Lees je het boek (1) of laat je het boek met rust en verlaat je de kamer (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      book();
+    } else if (choice === "2") {
+      exit();
+    } else {
+      death();
+    }
+  });
+}
+
+function book() {
+  console.log("Je opent het boek en het begint uit zichzelf te bladeren.");
+  console.log("Het onthult een vloek die het herenhuis teistert.");
+  console.log("Wat doe je? Probeer de vloek op te heffen (1) of verlaat het herenhuis (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      curse();
+    } else if (choice === "2") {
+      exit();
+    } else {
+      death();
+    }
+  });
+}
+
+function curse() {
+  console.log("Je probeert de vloek op te heffen, maar het gaat gruwelijk mis.");
+  console.log("Je wordt meegesleept in de vloek en de geesten van het herenhuis.");
+  badEnd();
+}
+
+function basement() {
+  console.log("Je daalt af naar de kelder en het is er ijskoud.");
+  console.log("Je kunt een mysterieuze deur openen (1) of teruggaan naar de hal (2).");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      door();
+    } else if (choice === "2") {
+      staircase();
+    } else {
+      death();
+    }
+  });
+}
+
+function door() {
+  console.log("Achter de deur vind je een donkere kamer met vreemde symbolen op de muren.");
+  console.log("Wat doe je? Onderzoek je de symbolen (1) of verlaat je de kamer (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      symbols();
+    } else if (choice === "2") {
+      exit();
+    } else {
+      death();
+    }
+  });
+}
+
+function symbols() {
+  console.log("Terwijl je de symbolen onderzoekt, voel je een vreemde aanwezigheid.");
+  console.log("Ga je door met onderzoeken (1) of probeer je de kamer te verlaten (2)?");
+  rl.question("Maak je keuze: ", (choice) => {
+    if (choice === "1") {
+      investigate();
+    } else if (choice === "2") {
+      exit();
+    } else {
+      death();
+    }
+  });
+}
+
+function exit() {
+  console.log("Je verlaat de kamer en gaat terug naar de hal.");
+  room1();
+}
+
+function death() {
+  console.log("Helaas, je avontuur is ten einde gekomen op een verschrikkelijke manier.");
+  console.log("Je hebt de vloek niet kunnen overleven. Game Over.");
+  rl.close();
+}
+
+function badEnd() {
+  console.log("Helaas, je avontuur is ten einde gekomen op een verschrikkelijke manier.");
+  console.log("Je hebt de vloek niet kunnen overleven. Game Over.");
+  rl.close();
+}
+
+function goodEnd() {
+  console.log("Gefeliciteerd! Je hebt de vloek opgeheven en het herenhuis overleefd.");
+  console.log("Je hebt een veilige uitgang gevonden. Je hebt gewonnen!");
+  rl.close();
+}
+
+intro();
